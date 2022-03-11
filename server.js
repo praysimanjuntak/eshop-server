@@ -30,18 +30,19 @@ const app = express();
 app.use(helmet());
 app.use(bodyParser.json());
 
-const whitelist = ['http://localhost:3000', 'https://eshop-frontend-chi.vercel.app/']
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (whitelist.indexOf(origin !== -1)) {
-            callback(null, true);
-        } else {
-            callback(new Error('not allowed by CORS'))
-        }
-    }
-}
+// const whitelist = ['http://localhost:3000', 'https://eshop-frontend-chi.vercel.app/']
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//         if (whitelist.indexOf(origin !== -1)) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error('not allowed by CORS'))
+//         }
+//     }
+// }
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 
 app.get('/', (req, res) => { res.send('Working') });
 app.post('/sign-in', signin.handleAuthentication(db, bcrypt));
