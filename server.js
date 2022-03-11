@@ -44,7 +44,7 @@ app.use(bodyParser.json());
 // app.use(cors(corsOptions));
 app.use(cors());
 
-app.get('/', (req, res) => { res.send('Working') });
+app.get('/', (req, res) => { res.send(`Working`) });
 app.post('/sign-in', signin.handleAuthentication(db, bcrypt));
 app.post('/register', register.handleRegister(db, bcrypt, saltRounds));
 app.get('/get-item', getItem.handleGetItems(db));
