@@ -53,7 +53,7 @@ app.post('/store-cart', storeCart.handleStoreCart(db));
 app.get('/get-particular/:email', auth.requireAuth(db), getParticular.handleGetParticular(db));
 app.post('/delete-cart', deleteCart.handleDeleteCart(db));
 
-PORT = process.env.PORT;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`);
 })
