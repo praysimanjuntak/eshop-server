@@ -48,10 +48,10 @@ app.get('/', (req, res) => { res.send(`Working`) });
 app.post('/sign-in', signin.handleAuthentication(db, bcrypt));
 app.post('/register', register.handleRegister(db, bcrypt, saltRounds));
 app.get('/get-item', getItem.handleGetItems(db));
-app.post('/get-cart', cart.handleGetCart(db));
-app.post('/store-cart', storeCart.handleStoreCart(db));
+app.post('/get-cart', auth.requireAuth(db), cart.handleGetCart(db));
+app.post('/store-cart', auth.requireAuth(db), storeCart.handleStoreCart(db));
 app.get('/get-particular/:email', auth.requireAuth(db), getParticular.handleGetParticular(db));
-app.post('/delete-cart', deleteCart.handleDeleteCart(db));
+app.post('/delete-cart', auth.requireAuth(db), deleteCart.handleDeleteCart(db));
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
